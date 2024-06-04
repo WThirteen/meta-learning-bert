@@ -80,7 +80,7 @@ class Learner(nn.Module):
                     print("Inner Loss: ", np.mean(all_loss))
 
             query_dataloader = DataLoader(query, sampler=None, batch_size=len(query))
-            query_batch = iter(query_dataloader).next()
+            query_batch = iter(query_dataloader).__next__()
             query_batch = tuple(t.to(self.device) for t in query_batch)
             q_input_ids, q_attention_mask, q_segment_ids, q_label_id = query_batch
             q_outputs = fast_model(q_input_ids, q_attention_mask, q_segment_ids, labels = q_label_id)
